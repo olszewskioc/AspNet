@@ -1,0 +1,89 @@
+:root {
+    --primary-color: #1E2A78;   /* Azul Tecnológico */
+    --secondary-color: #4A90E2; /* Azul Moderno */
+    --text-color: #2E2E2E;      /* Cinza Profissional */
+    --background-color: #fdfdfd; /* Branco Limpo */
+    --accent-color: #00A8E8;    /* Ciano Vibrante */
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Header, Main, Footer */
+    grid-template-areas: 
+        "header"
+        "main"
+        "footer";
+    min-height: 100vh;
+    background-color: var(--background-color);
+}
+
+header {
+    grid-area: header;
+    margin: 0;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    margin-top: 10px;
+    font-size: 3rem;
+}
+
+header h2 {
+    margin-top: 1rem;
+    font-size: large;
+}
+
+main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto auto auto auto;
+    grid-template-areas: 
+        "photo"
+        "about"
+        "formations"
+        "experiences"
+        "contacts";
+    gap: 20px;
+    padding: 1rem;
+    margin: auto;
+    max-width: 70%;
+    place-items: center;
+    color: var(--text-color);
+}
+
+.profile-image {
+    grid-area: photo;
+    border-radius: 5%;
+    width: 50%;
+    box-shadow: 10px 5px 5px -1px rgb(20, 20, 20);
+}
+
+
+footer {
+    grid-area: footer;
+    margin: 0;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    text-align: center;
+    padding: 20px;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+
+
