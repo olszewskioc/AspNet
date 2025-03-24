@@ -55,3 +55,6 @@ nunit-*.xml
 
 # Vscode 
 .vscode/
+
+# Conection strings
+appsettings.json

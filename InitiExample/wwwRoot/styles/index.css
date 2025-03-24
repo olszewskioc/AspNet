@@ -85,5 +85,18 @@ footer a {
     text-decoration: none;
 }
 
+#about {
+    grid-area: about;
+}
+#formations {
+    grid-area: formations;
+}
+#experience {
+    grid-area: experience;
+}
+#contacts {
+    grid-area: contacts;
+}
+
 
 
