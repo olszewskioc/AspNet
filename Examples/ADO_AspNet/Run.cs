@@ -7,26 +7,17 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.Annotations;
-using Entity_AspNet.Controllers;
-using Entity_AspNet.Data;
-using Microsoft.EntityFrameworkCore;
+using ADO_AspNet.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Entity_AspNet
+namespace ADO_AspNet
 {
     public class Executar
     {
         static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
-
-            builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseNpgsql(connectionString)
-                .EnableSensitiveDataLogging() // Adiciona mais detalhes ao log
-                .LogTo(Console.WriteLine, LogLevel.Information)); // Exibe logs no console
 
             builder.Services.AddControllers();
 

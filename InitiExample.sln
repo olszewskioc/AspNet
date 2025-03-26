@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InitiExample", "InitiExample\InitiExample.csproj", "{1ECC33EF-1221-4E2A-8720-D1048DA099D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InitiExample", "Examples\InitiExample\InitiExample.csproj", "{1ECC33EF-1221-4E2A-8720-D1048DA099D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exemplo_2_Endpoint", "Exemplo_2_Endpoint\Exemplo_2_Endpoint.csproj", "{E53029F1-59DA-4190-9654-A4E0A4FD09D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exemplo_2_Endpoint", "Examples\Exemplo_2_Endpoint\Exemplo_2_Endpoint.csproj", "{E53029F1-59DA-4190-9654-A4E0A4FD09D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity_AspNet", "Entity_AspNet\Entity_AspNet.csproj", "{12460248-9A2A-4CC3-A7BA-5A8253DE9A91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity_AspNet", "Examples\Entity_AspNet\Entity_AspNet.csproj", "{12460248-9A2A-4CC3-A7BA-5A8253DE9A91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO_AspNet", "Examples\ADO_AspNet\ADO_AspNet.csproj", "{71A6D5E7-FBE9-4459-84BF-B54214D8371A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +32,9 @@ Global
 		{12460248-9A2A-4CC3-A7BA-5A8253DE9A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12460248-9A2A-4CC3-A7BA-5A8253DE9A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12460248-9A2A-4CC3-A7BA-5A8253DE9A91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71A6D5E7-FBE9-4459-84BF-B54214D8371A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71A6D5E7-FBE9-4459-84BF-B54214D8371A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71A6D5E7-FBE9-4459-84BF-B54214D8371A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71A6D5E7-FBE9-4459-84BF-B54214D8371A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
