@@ -67,6 +67,28 @@ namespace Entity_AspNet.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Software>> GetById(int id)
+        {
+            try
+            {
+                var software =  await _context.Softwares.FindAsync(id);
+                if (software == null) return NotFound();
+                return software;
+            }
+            catch (NpgsqlException ex)
+            {
+                _logger.LogError(ex, "ERROR DB");
+                return BadRequest();
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "ERROR");
+                return BadRequest();
+            }
+        }
+
         [HttpPut("{id}")]
         public async Task<ActionResult<Maquina>> Put(int id, [FromBody] Software software)
         {

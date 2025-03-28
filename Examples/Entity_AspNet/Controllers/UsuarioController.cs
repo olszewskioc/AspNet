@@ -66,6 +66,27 @@ namespace Entity_AspNet.Controllers
                 return Enumerable.Empty<Usuario>();
             }
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Usuario>> GetById(int id)
+        {
+            try
+            {
+                var user =  await _context.Usuarios.FindAsync(id);
+                if (user == null) return NotFound();
+                return user;
+            }
+            catch (NpgsqlException ex)
+            {
+                _logger.LogError(ex, "ERROR DB");
+                return BadRequest();
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "ERROR");
+                return BadRequest();
+            }
+        }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<Usuario>> Put(int id, [FromBody] Usuario usuario)

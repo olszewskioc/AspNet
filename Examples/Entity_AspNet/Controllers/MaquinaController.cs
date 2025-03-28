@@ -66,6 +66,27 @@ namespace Entity_AspNet.Controllers
                 return Enumerable.Empty<Maquina>();
             }
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Maquina>> GetById(int id)
+        {
+            try
+            {
+                var maquina =  await _context.Maquinas.FindAsync(id);
+                if (maquina == null) return NotFound();
+                return maquina;
+            }
+            catch (NpgsqlException ex)
+            {
+                _logger.LogError(ex, "ERROR DB");
+                return BadRequest(ex.Message);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "ERROR");
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<Maquina>> Put(int id, [FromBody] Maquina maquina)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,29 +8,58 @@
   </head>
 
   <body>
-    <h1>Cadastro Usuário</h1>
-    <form id="userForm">
-        <input type="hidden" id="id" name="id"/>
-        <input type="text" id="nome" name="nome" placeholder="Nome" required/>
-        <input type="password" id="password" name="password" placeholder="Password" required/>
-        <input type="number" id="ramal" name="ramal" placeholder="Ramal" required/>
-        <input type="string" id="especialidade" name="especialidade" placeholder="Especialidade" required/>
-        <button type="submit">Cadastrar</button>
-    </form>
-      <h2></h2>
-      <table id="tabelaUsuarios">
-        <thead>
+    <header>
+      <a href="index.html" id="active">Usuário</a>
+      <a href="maquina.html">Máquina</a>
+      <a href="software.html">Software</a>
+    </header>
+
+    <main>
+      <section class="form-container">
+        <form id="userForm">
+          <input type="number" id="id" name="id" placeholder="ID" />
+          <input type="text" id="nome" name="nome" placeholder="Nome" required />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Senha"
+            required
+          />
+          <input type="number" id="ramal" name="ramal" placeholder="Ramal" required />
+          <input
+            type="text"
+            id="especialidade"
+            name="especialidade"
+            placeholder="Especialidade"
+            required
+          />
+          <button type="submit">Cadastrar</button>
+        </form>
+      </section>
+
+      <section class="table-container">
+        <h2>Usuários Cadastrados</h2>
+        <table id="tabelaUsuarios">
+          <thead>
             <tr>
-                <th>Nome</th>
-                <th>Senha</th>
-                <th>Ramal</th>
-                <th>Especialidade</th>
-                <th>Ações</th>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Senha</th>
+              <th>Ramal</th>
+              <th>Especialidade</th>
+              <th>Ações</th>
             </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <script src="script.js"></script>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
     </main>
+
+    <footer>
+      <p>&copy; 2025 Sistema de Cadastro</p>
+    </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>
