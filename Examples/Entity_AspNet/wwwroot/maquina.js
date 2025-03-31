@@ -54,7 +54,7 @@ async function salvarMaquina(event) {
         memoriaRam: ram,
         usuarioId: user,
     };
-
+    console.table(maquina)
     try {
         // Verificar se a máquina já existe
         const res = await fetch(`${API}/${id}`);
@@ -69,9 +69,7 @@ async function salvarMaquina(event) {
                 },
                 body: JSON.stringify(maquina),
             });
-
-            const createData = await createResponse.json();
-            console.log("Máquina criada:", createData);
+            console.log("Máquina criada:", createResponse);
         } else if (res.ok) {
             console.info("Máquina encontrada. Atualizando.");
             // Se a máquina já existir, atualiza a máquina
@@ -82,9 +80,7 @@ async function salvarMaquina(event) {
                 },
                 body: JSON.stringify(maquina),
             });
-
-            const updateData = await updateResponse.json();
-            console.log("Máquina atualizada:", updateData);
+            console.log("Máquina atualizada:", updateResponse);
         } else {
             throw new Error("Erro ao verificar a máquina.");
         }

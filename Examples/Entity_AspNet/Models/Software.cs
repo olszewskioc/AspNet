@@ -28,6 +28,6 @@ namespace Entity_AspNet.Models
         [ForeignKey(nameof(Maquina))]
         public int MaquinaId { get; set; }
 
-        public Maquina Maquina { get; init; } = null!;
+        public Maquina? Maquina { get; init; } = null;
     }
 }

@@ -11,6 +11,7 @@ async function carregarUsuarios() {
     try {
         const response = await fetch(API);
         const usuarios = await response.json();
+        console.table(usuarios)
         const tabelaBody = document.querySelector("#tabelaUsuarios tbody");
         tabelaBody.innerHTML = "";
 

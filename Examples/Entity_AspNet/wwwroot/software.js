@@ -51,43 +51,46 @@ async function salvarSoftware(event) {
 
     console.table(software);
     try {
-        await fetch(`${API}/${id}`)
-            .then((res) => {
-                if (res.status === 404) {
-                    console.info("Software not found. Creating one.");
-                    return fetch(API, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(maquina),
-                    });
-                } else if (res.ok) {
-                    console.info("Software found. Updating.");
-                    return fetch(`${API}/${id}`, {
-                        method: "PUT",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(maquina),
-                    });
-                } else throw new Error("Error when verifying software");
-            })
-            .then((res) => res.json())
-            .then(() => {
-                document.getElementById("softwareForm").reset();
-                carregarSoftwares();
-            })
-            .catch((err) => console.error("ERROR", err));
-    } catch (error) {
-        console.error("Erro ao salvar software:", error);
+        // Verificar se a software já existe
+        const res = await fetch(`${API}/${id}`);
+        if (res.status === 404) {
+            console.info("Software não encontrado. Criando um novo.");
+            // Se a software não existir, cria uma nova
+            const createResponse = await fetch(API, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(software),
+            });
+            console.log("Software criado:", createResponse);
+        } else if (res.ok) {
+            console.info("Software encontrada. Atualizando.");
+            // Se o software já existir, atualiza
+            const updateResponse = await fetch(`${API}/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(software),
+            });
+            console.log("Software atualizado:", updateResponse);
+        } else {
+            throw new Error("Erro ao verificar o software.");
+        }
+
+        // Limpar o formulário e recarregar
+        document.getElementById("softwareForm").reset();
+        carregarSoftwares();
+    } catch (err) {
+        console.error("Erro ao salvar software:", err);
     }
 }
 
 async function editarSoftware(id) {
     await fetch(`${API}/${id}`)
-        .then(res => res.json())
-        .then(software => {
+        .then((res) => res.json())
+        .then((software) => {
             if (!software) {
                 console.error("Máquina não encontrada!");
                 return;
