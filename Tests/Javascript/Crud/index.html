@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="shortcuts icon" href="./assets/icon.png" />
+        <title>CRUD</title>
+    </head>
+    <body>
+        <header>
+            <h1>CRUD Usuário</h1>
+        </header>
+        <main>
+            <section>
+                <form>
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" placeholder="Nome">
+                    <label for="birth">Data Nascimento</label>
+                    <input type="date" id="birth" name="birth" placeholder="01/01/2000">
+                    <label for="cpf">CPF</label>
+                    <input type="text" oninput="colocaMascara(event)" id="cpf" name="cpf" placeholder="123.456.789-00">
+                </form>
+                <button type="submit" id="saveBtn">Cadastrar</button>
+            </section>
+            <section>
+                <h2>Lista de Usuários</h2>
+                <div id="listUsers"></div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Sistema de Cadastro</p>
+        </footer>
+        <script src="script.js"></script>
+    </body>
+</html>
