@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login com ReCaptcha</title>
+        <script
+            src="https://www.google.com/recaptcha/api.js"
+            async
+            defer
+        ></script>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                padding: 20px;
+            }
+
+            input {
+                display: block;
+                margin: 10px 0;
+                padding: 10px;
+                box-shadow: 2px 5px 2px #000;
+            }
+            div {
+                margin-bottom: 50px;
+            }
+            iframe {
+                border: 1px solid yellow;
+                padding: 10px;
+                background-color: aqua;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Login de verificação ReCaptcha</h1>
+
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="password" id="senha" placeholder="Senha" required />
+
+            <div class="g-recaptcha" data-sitekey="6Lf45wcrAAAAABNAunROURX8fsUb6xtU1H4H_A6H"></div>
+
+            <button type="submit">Entrar</button>
+        </form>
+
+        <script>
+            document
+                .getElementById("loginForm")
+                .addEventListener("submit", (event) => {
+                    event.preventDefault();
+                    const siteKey = "6Lf45wcrAAAAABNAunROURX8fsUb6xtU1H4H_A6H";
+                    const secretKey = "6Lf45wcrAAAAADG5rR4yUP4iCMf6ctI2S0XLdo-j";
+                    const email = document.getElementById("email").value;
+                    const senha = document.getElementById("senha").value;
+                    const recaptchaResponse = grecaptcha.getResponse();
+
+                    if (recaptchaResponse.length === 0) {
+                        alert("Por favor, confirme que você não é um robô!");
+                        return;
+                    }
+
+                    const usuario = {
+                        email: email,
+                        status: "Aprovado",
+                    };
+
+                    const blob = new Blob([JSON.stringify(usuario, null, 2)], {
+                        type: "application/json",
+                    });
+
+                    const link = document.createElement("a");
+                    link.href = URL.createObjectURL(blob);
+                    link.download = "usuario.json";
+                    link.click();
+
+                    alert("Login validado com sucesso!");
+                });
+        </script>
+    </body>
+</html>
