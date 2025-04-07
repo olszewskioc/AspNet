@@ -1,0 +1,138 @@
+/* Resetando alguns estilos padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+        "header"
+        "main"
+        "footer";
+    min-height: 100vh;
+}
+
+/* Cabeçalho */
+header {
+    grid-area: header;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header a {
+    font-size: 2rem;
+    text-decoration: none;
+    color: #fff;
+    margin: 0 50px 0 50px;
+}
+
+#active {
+    color: rgb(86, 230, 230);
+}
+
+/* Conteúdo Principal */
+main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulário */
+form {
+    display: grid;
+    gap: 10px;
+}
+
+form input, form button {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #444;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #333;
+    color: white;
+}
+
+table button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+table button:hover {
+    background-color: #ddd;
+}
+
+/* Rodapé */
+footer {
+    grid-area: footer;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Responsividade */
+@media (min-width: 768px) {
+    body {
+        grid-template-columns: 1fr 3fr;
+        grid-template-areas: 
+            "header header"
+            "main main"
+            "footer footer";
+    }
+
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    table {
+        width: 100%;
+    }
+}

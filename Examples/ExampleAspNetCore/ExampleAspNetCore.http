@@ -1,0 +1,32 @@
+@ExampleAspNetCore_HostAddress = http://localhost:5018
+
+###
+
+POST http://localhost:5018/Usuario
+Content-Type: application/json
+
+{
+  "userId": 8,
+  "nome": "string",
+  "password": "string",
+  "ramal": 0,
+  "especialidade": "string"
+}
+
+###
+
+GET http://localhost:5018/Usuario
+Content-Type: application/json
+
+###
+
+PUT http://localhost:5018/Usuario/7
+Content-Type: application/json
+
+{
+  "userId": 0,
+  "nome": "string",
+  "password": "string",
+  "ramal": 0,
+  "especialidade": "string"
+}

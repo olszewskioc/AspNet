@@ -6,6 +6,10 @@ using Microsoft.Extensions.Hosting;
 
 dotnet add package Microsoft.AspNetCore.Mvc
 
+## Important
+```dotnet new gitignore```
+
+
 ## Organization
 ```
 ├───.vscode
@@ -20,18 +24,18 @@ dotnet add package Microsoft.AspNetCore.Mvc
 │   │   ├───Views
 │   │   └───wwwroot
 │   │
-│   ├───Exemplo_2_Endpoint
-│   │   │                       
+│   ├───Exemplo_2_Endpoint                     
 │   │   ├───Controllers
 │   │   ├───Models
 │   │   └───Views
 │   │
-│   └───InitiExample
-│       ├───bin
-│       │
-│       └───wwwRoot
-│           ├───scripts
-│           └───styles
+│   ├───InitiExample
+│   │   └───wwwRoot
+│   │       ├───scripts
+│   │       └───styles
+│   └───ExampleAspNetCore
+│       └───Properties
+│
 └───Tests
     ├───Javascript
     │   ├───Auth

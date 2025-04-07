@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Crud Software</title>
+    </head>
+
+    <body>
+        <header>
+            <a href="index.html">Usuário</a>
+            <a href="maquina.html">Máquina</a>
+            <a href="software.html" id="active">Software</a>
+        </header>
+
+        <main>
+            <section class="form-container">
+                <form id="softwareForm">
+                    <input type="number" id="id" name="id" placeholder="ID" />
+                    <input
+                        type="text"
+                        id="produto"
+                        name="produto"
+                        placeholder="Produto"
+                        required
+                    />
+                    <input
+                        type="number"
+                        id="hd"
+                        name="hd"
+                        placeholder="HD"
+                        required
+                    />
+                    <input
+                        type="number"
+                        id="ram"
+                        name="ram"
+                        placeholder="RAM"
+                        required
+                    />
+                    <input
+                        type="number"
+                        id="maquina"
+                        name="maquina"
+                        placeholder="ID Máquina"
+                        required
+                    />
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </section>
+
+            <section class="table-container">
+                <h2>Softwares Cadastrados</h2>
+                <table id="tabelaSoftwares">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Produto</th>
+                            <th>HD</th>
+                            <th>RAM</th>
+                            <th>ID Máquina</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Sistema de Cadastro</p>
+        </footer>
+
+        <script src="software.js"></script>
+    </body>
+</html>
