@@ -1,5 +1,6 @@
 import { Pessoa } from "./Pessoa.ts";
 import { Conta, Poupanca, Corrente } from "./Conta.ts";
+import chalk from "@chalk";
 
 function main(): void {
   try {
@@ -9,11 +10,11 @@ function main(): void {
     // Aplicações financeiras
     contas[0].sacar(150);
     contas[0].depositar(50);
-    console.log(contas[0].exibirDados(), "\n");
+    console.log(contas[1].exibirDados(), "\n");
 
     contas[1].depositar(150);
     contas[1].sacar(150);
-    console.log(contas[1].exibirDados());
+    console.log(chalk.green(contas[0].exibirDados()));
 
   } catch (error: unknown) {
       if (error instanceof Error) {
