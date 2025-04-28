@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{F1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleAspNetCore", "Examples\ExampleAspNetCore\ExampleAspNetCore.csproj", "{B73116A6-218F-4010-844C-73C26E8BDFDD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "School", "Examples\School\School.csproj", "{60865372-6B61-41AE-907D-CF9FCCA969DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,8 +46,13 @@ Global
 		{B73116A6-218F-4010-844C-73C26E8BDFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B73116A6-218F-4010-844C-73C26E8BDFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B73116A6-218F-4010-844C-73C26E8BDFDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60865372-6B61-41AE-907D-CF9FCCA969DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60865372-6B61-41AE-907D-CF9FCCA969DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60865372-6B61-41AE-907D-CF9FCCA969DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60865372-6B61-41AE-907D-CF9FCCA969DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B73116A6-218F-4010-844C-73C26E8BDFDD} = {F1E5E5FC-8CEB-4044-84C0-24589A568B87}
+		{60865372-6B61-41AE-907D-CF9FCCA969DF} = {F1E5E5FC-8CEB-4044-84C0-24589A568B87}
 	EndGlobalSection
 EndGlobal
