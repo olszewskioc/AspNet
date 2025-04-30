@@ -5,7 +5,7 @@ using System.IO;
 
 namespace School.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseSubjectStudent> CourseSubjectStudents { get; set; }

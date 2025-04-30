@@ -19,8 +19,8 @@ namespace School.DTOs
     }
     public class CourseSubjectStudentUpdateDTO
     {
-        public int CourseId { get; set; }
-        public int SubjectId { get; set; }
-        public int StudentId { get; set;}
+        public int? CourseId { get; set; }
+        public int? SubjectId { get; set; }
+        public int? StudentId { get; set;}
     }
 }

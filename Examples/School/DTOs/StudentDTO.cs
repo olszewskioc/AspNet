@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using School.Models;
 
 namespace School.DTOs
 {
@@ -14,12 +15,11 @@ namespace School.DTOs
     {
         public int StudentId { get; set;}
         public string StudentName { get; set; } = string.Empty;
-        public int CourseId { get; set; } 
+        public Course? Course { get; set; }
     }
     public class StudentUpdateDTO
     {
-        public int StudentId { get; set;}
-        public string StudentName { get; set; } = string.Empty;
-        public int CourseId { get; set; } 
+        public string? StudentName { get; set; }
+        public int? CourseId { get; set; } 
     }
 }

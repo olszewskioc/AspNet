@@ -14,27 +14,26 @@ namespace School.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class StudentController : ControllerBase
+    public class SubjectController : ControllerBase
     {
         private readonly AppDbContext _context;
-        private readonly ILogger<StudentController> _logger;
-        public StudentController(AppDbContext context, ILogger<StudentController> logger)
+        private readonly ILogger<SubjectController> _logger;
+        public SubjectController(AppDbContext context, ILogger<SubjectController> logger)
         {
             _context = context;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<StudentReadDTO>>> Get()
+        public async Task<ActionResult<SubjectReadDTO>> Get()
         {
             try
             {
-                var students = await _context.Students
-                    .Include(s => s.Course)
-                    .Select(students => new StudentReadDTO { StudentId = students.StudentId, StudentName = students.StudentName, Course = students.Course, })
+                var subjects = await _context.Subjects
+                    .Select(subject => new SubjectReadDTO { SubjectId = subject.SubjectId, Description = subject.Description})
                     .ToListAsync();
-                _logger.LogInformation($"Students get with success\n");
-                return Ok(students);
+                _logger.LogInformation($"subjects get with success\n");
+                return Ok(subjects);
             }
             catch (NpgsqlException ex)
             {
@@ -50,28 +49,24 @@ namespace School.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<StudentReadDTO>> Post([FromBody] StudentCreateDTO studentDto)
+        public async Task<ActionResult<SubjectReadDTO>> Post([FromBody] SubjectCreateDTO subjectDto)
         {
             try
             {
-                var course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId == studentDto.CourseId);
-                if (course == null) return BadRequest($"Course not found: ${studentDto.CourseId}");
-                var student = new Student
+                var subject = new Subject
                 {
-                    StudentName = studentDto.StudentName,
-                    CourseId = studentDto.CourseId
+                    Description = subjectDto.Description
                 };
-                _context.Students.Add(student);
-                _logger.LogInformation($"Student ${student.StudentName} added to the context!\n");
+                _context.Subjects.Add(subject);
+                _logger.LogInformation($"Student ${subject.Description} added to the context!\n");
                 await _context.SaveChangesAsync();
 
-                var studentRead = new StudentReadDTO
+                var subjectRead = new SubjectReadDTO
                 { 
-                    StudentId = student.StudentId,
-                    StudentName = student.StudentName,
-                    Course = course
+                    SubjectId = subject.SubjectId,
+                    Description = subject.Description,
                 };
-                return Ok(studentRead);
+                return Ok(subjectRead);
             }
             catch (NpgsqlException ex)
             {
@@ -87,21 +82,17 @@ namespace School.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] StudentUpdateDTO studentDto)
+        public async Task<ActionResult> Put(int id, [FromBody] SubjectUpdateDTO subjectDto)
         {
             try
             {
-                var student = await _context.Students.FindAsync(id);
-                if (student == null) return NotFound($"Student not found: ${id}");
+                var subject = await _context.Subjects.FindAsync(id);
+                if (subject == null) return NotFound($"subject not found: ${id}");
 
-                var course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId == studentDto.CourseId);
-                if (course == null) return BadRequest($"Course not found: ${studentDto.CourseId}");
-
-                student.StudentName = studentDto.StudentName ?? student.StudentName;
-                student.CourseId = studentDto.CourseId ?? student.CourseId;
+                subject.Description = subjectDto.Description ?? subject.Description;
 
                 await _context.SaveChangesAsync();
-                _logger.LogInformation($"Student {student.StudentName} updated succesfuly\n");
+                _logger.LogInformation($"subject {subject.Description} updated succesfuly\n");
                 return NoContent();
 
             }
@@ -123,11 +114,11 @@ namespace School.Controllers
         {
             try
             {
-                var student = await _context.Students.FindAsync(id);
-                if (student == null) return NotFound($"Student not found: ${id}");
-                _context.Students.Remove(student);
+                var subject = await _context.Subjects.FindAsync(id);
+                if (subject == null) return NotFound($"subject not found: ${id}");
+                _context.Subjects.Remove(subject);
                 await _context.SaveChangesAsync();
-                _logger.LogWarning($"Stuend ${student.StudentName} deleted!");
+                _logger.LogWarning($"subject ${subject.SubjectId} deleted!");
                 return NoContent();
             }
             catch (NpgsqlException ex)
