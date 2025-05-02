@@ -1,6 +1,7 @@
 using School.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new() { Title = "Minha API", Version = "v1" });
+    c.SwaggerDoc("v1", new() { Title = "Scholar System API", Version = "v1" });
 });
 
 // builder.Services.AddControllers()
@@ -24,7 +25,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"))
                 .EnableSensitiveDataLogging() // Adiciona mais detalhes ao log
                 .LogTo(Console.WriteLine, LogLevel.Information)); // Exibe logs no console
-
 
 var app = builder.Build();
 
