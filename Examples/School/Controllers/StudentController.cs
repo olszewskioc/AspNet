@@ -31,9 +31,55 @@ namespace School.Controllers
             {
                 var students = await _context.Students
                     .Include(s => s.Course)
-                    .Select(students => new StudentReadDTO { StudentId = students.StudentId, StudentName = students.StudentName, Course = students.Course, })
+                    .Select(s => new StudentReadDTO
+                    {
+                        StudentId = s.StudentId,
+                        StudentName = s.StudentName,
+                        Course = new CourseStudentReadDTO
+                        {
+                            CourseId = s.Course.CourseId,
+                            Description = s.Course.Description
+                        }
+                    })
                     .ToListAsync();
-                _logger.LogInformation($"Students get with success\n");
+
+                _logger.LogInformation("Students get with success");
+                return Ok(students);
+            }
+            catch (NpgsqlException ex)
+            {
+                _logger.LogError(ex, "ERROR DB");
+                return StatusCode(400, $"ERROR DB: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "ERROR");
+                return StatusCode(500, $"ERROR: {ex.Message}");
+            }
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<StudentReadDTO>> Get(int id)
+        {
+            try
+            {
+                var students = await _context.Students
+                    .Include(s => s.Course)
+                    .Select(s => new StudentReadDTO
+                    {
+                        StudentId = s.StudentId,
+                        StudentName = s.StudentName,
+                        Course = new CourseStudentReadDTO
+                        {
+                            CourseId = s.Course.CourseId,
+                            Description = s.Course.Description
+                        }
+                    })
+                    .FirstOrDefaultAsync(s => s.StudentId == id);
+                if (students == null) return NotFound("Student not found");
+
+                _logger.LogInformation($"Student {students.StudentName} get with success\n");
                 return Ok(students);
             }
             catch (NpgsqlException ex)
@@ -66,10 +112,10 @@ namespace School.Controllers
                 await _context.SaveChangesAsync();
 
                 var studentRead = new StudentReadDTO
-                { 
+                {
                     StudentId = student.StudentId,
                     StudentName = student.StudentName,
-                    Course = course
+                    Course = new CourseStudentReadDTO {CourseId = course.CourseId, Description = course.Description}
                 };
                 return Ok(studentRead);
             }
@@ -102,7 +148,7 @@ namespace School.Controllers
 
                 await _context.SaveChangesAsync();
                 _logger.LogInformation($"Student {student.StudentName} updated succesfuly\n");
-                return NoContent();
+                return Ok(new { message = "Student uptdated succesfully!" });
 
             }
             catch (NpgsqlException ex)

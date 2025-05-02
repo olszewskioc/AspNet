@@ -25,22 +25,65 @@ namespace School.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<CourseReadDTO>> Get()
+        public async Task<ActionResult<IEnumerable<CourseReadDTO>>> Get()
         {
             try
             {
                 var courses = await _context.Courses
-                    .Include(s => s.Students)
-                    .Select(course => new CourseReadDTO { CourseId = course.CourseId, Description = course.Description, Students = course.Students})
+                    .Include(c => c.Students)
+                    .Select(course => new CourseReadDTO
+                    {
+                        CourseId = course.CourseId,
+                        Description = course.Description,
+                        Students = course.Students.Select(s => new StudentInCourseDTO
+                        {
+                            StudentId = s.StudentId,
+                            StudentName = s.StudentName
+                        }).ToList()
+                    })
                     .ToListAsync();
-                _logger.LogInformation($"Courses get with success\n");
+
+                _logger.LogInformation("Courses fetched successfully");
                 return Ok(courses);
             }
             catch (NpgsqlException ex)
             {
                 _logger.LogError(ex, "ERROR DB");
                 return StatusCode(400, $"ERROR DB: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "ERROR");
+                return StatusCode(500, $"ERROR: {ex.Message}");
+            }
+        }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CourseReadDTO>> Get(int id)
+        {
+            try
+            {
+                var courses = await _context.Courses
+                    .Include(c => c.Students)
+                    .Select(course => new CourseReadDTO
+                    {
+                        CourseId = course.CourseId,
+                        Description = course.Description,
+                        Students = course.Students.Select(s => new StudentInCourseDTO
+                        {
+                            StudentId = s.StudentId,
+                            StudentName = s.StudentName
+                        }).ToList()
+                    })
+                    .FirstOrDefaultAsync(c => c.CourseId == id);
+
+                _logger.LogInformation("Courses fetched successfully");
+                return Ok(courses);
+            }
+            catch (NpgsqlException ex)
+            {
+                _logger.LogError(ex, "ERROR DB");
+                return StatusCode(400, $"ERROR DB: {ex.Message}");
             }
             catch (Exception ex)
             {
@@ -58,23 +101,24 @@ namespace School.Controllers
                 {
                     Description = courseDto.Description
                 };
+
                 _context.Courses.Add(course);
-                _logger.LogInformation($"Student ${course.Description} added to the context!\n");
+                _logger.LogInformation($"Course {course.Description} added to the context!");
                 await _context.SaveChangesAsync();
 
                 var courseRead = new CourseReadDTO
-                { 
+                {
                     CourseId = course.CourseId,
                     Description = course.Description,
-                    Students = course.Students
+                    Students = new List<StudentInCourseDTO>() // retorno vazio, pois ainda não há alunos
                 };
+
                 return Ok(courseRead);
             }
             catch (NpgsqlException ex)
             {
                 _logger.LogError(ex, "ERROR DB");
                 return StatusCode(400, $"ERROR DB: {ex.Message}");
-
             }
             catch (Exception ex)
             {
@@ -82,6 +126,7 @@ namespace School.Controllers
                 return StatusCode(500, $"ERROR: {ex.Message}");
             }
         }
+
 
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(int id, [FromBody] CourseUpdateDTO courseDto)

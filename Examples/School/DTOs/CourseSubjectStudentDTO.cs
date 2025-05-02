@@ -13,9 +13,9 @@ namespace School.DTOs
     }
     public class CourseSubjectStudentReadDTO
     {
-        public int CourseId { get; set; }
-        public int SubjectId { get; set; }
-        public int StudentId { get; set;}
+        public CourseStudentReadDTO Course { get; set; } = new CourseStudentReadDTO();
+        public SubjectReadDTO Subject { get; set; } = new SubjectReadDTO();
+        public StudentInCourseDTO Student { get; set;} = new StudentInCourseDTO();
     }
     public class CourseSubjectStudentUpdateDTO
     {

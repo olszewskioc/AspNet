@@ -25,13 +25,37 @@ namespace School.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<SubjectReadDTO>> Get()
+        public async Task<ActionResult<IEnumerable<SubjectReadDTO>>> Get()
         {
             try
             {
                 var subjects = await _context.Subjects
                     .Select(subject => new SubjectReadDTO { SubjectId = subject.SubjectId, Description = subject.Description})
                     .ToListAsync();
+                _logger.LogInformation($"subjects get with success\n");
+                return Ok(subjects);
+            }
+            catch (NpgsqlException ex)
+            {
+                _logger.LogError(ex, "ERROR DB");
+                return StatusCode(400, $"ERROR DB: {ex.Message}");
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "ERROR");
+                return StatusCode(500, $"ERROR: {ex.Message}");
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<SubjectReadDTO>> Get(int id)
+        {
+            try
+            {
+                var subjects = await _context.Subjects
+                    .Select(subject => new SubjectReadDTO { SubjectId = subject.SubjectId, Description = subject.Description})
+                    .FirstOrDefaultAsync(s => s.SubjectId == id);
                 _logger.LogInformation($"subjects get with success\n");
                 return Ok(subjects);
             }

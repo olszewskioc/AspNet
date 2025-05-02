@@ -13,7 +13,9 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new() { Title = "Minha API", Version = "v1" });
 });
 
-builder.Services.AddControllers();
+// builder.Services.AddControllers()
+//     .AddJsonOptions(x =>
+//         x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve);
 
 Console.WriteLine($"{builder.Configuration.GetConnectionString("PostgresConnection")}");
 

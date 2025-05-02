@@ -9,17 +9,23 @@ namespace School.DTOs
     public class StudentCreateDTO
     {
         public string StudentName { get; set; } = string.Empty;
-        public int CourseId { get; set; } 
+        public int CourseId { get; set; }
     }
     public class StudentReadDTO
     {
-        public int StudentId { get; set;}
+        public int StudentId { get; set; }
         public string StudentName { get; set; } = string.Empty;
-        public Course? Course { get; set; }
+        public CourseStudentReadDTO? Course { get; set; }
     }
     public class StudentUpdateDTO
     {
         public string? StudentName { get; set; }
-        public int? CourseId { get; set; } 
+        public int? CourseId { get; set; }
     }
+    public class StudentInCourseDTO
+    {
+        public int StudentId { get; set; }
+        public string StudentName { get; set; } = string.Empty;
+    }
+
 }

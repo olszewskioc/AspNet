@@ -14,10 +14,16 @@ namespace School.DTOs
     {
         public int CourseId { get; set; }
         public string Description { get; set; } = string.Empty;
-        public ICollection<Student>? Students { get; set; }
+        public List<StudentInCourseDTO> Students { get; set; } = new();
     }
+
     public class CourseUpdateDTO
     {
+        public string Description { get; set; } = string.Empty;
+    }
+    public class CourseStudentReadDTO
+    {
+        public int CourseId { get; set; }
         public string Description { get; set; } = string.Empty;
     }
 }
