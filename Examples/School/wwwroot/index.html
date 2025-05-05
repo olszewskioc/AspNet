@@ -3,9 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/global.css">
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>API - School</title>
 </head>
 <body>
-    <h1>School System</h1>
+    <header>
+        <section class="navbar navbar-expand-lg navbar-dark bg-primary shadow-md">
+
+            <nav class="container flex justify-between ">
+                <a href="#" class="navbar-brand">
+                    <i class="fas fa-graduation-cap me-2">Olszewski School's</i>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toogle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+            <nav class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <div class="fas fa-home me-1 p-1 mx-1">
+                                <i>Home</i>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./login.html">
+                            <div class="fas fa-sign-in-alt me-1 p-1 mx-2">
+                                <i>Login</i>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active"></a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+        <section id="hero-section" class="flex-auto h-full shadow-md">
+            <section id="hero-content" class="container">
+                <h1 class="display-4 fw-bold">School System</h1>
+                <p class="lead w-auto">API for create, update, delete and visualize students, courses and subjects</p>
+            </section>
+        </section>
+        <nav class="py-6 row g-4 mx-4 align-items-center">
+            <h2 class="lead fw-bold">Modules</h2>
+            <section class="col-md-6 col-lg-3">
+                <div class="card h-100 d-flex flex-column">
+                    <img class="card-img-top" style="height: 200px; object-fit: cover;" src="https://images.unsplash.com/photo-1607013407627-6ee814329547?q=80&w=964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Students in front of college entrance">
+                    <div class="card-body text-center d-flex flex-column flex-grow-1">
+                        <h3 class="card-text">Student Management</h3>
+                        <p>Register and manage students of your institution.</p>
+                        <a href="./students.html" class="btn btn-primary">Access</a>
+                    </div>
+                </div>
+            </section>
+            <section class="col-md-6 col-lg-3">
+                <div class="card h-100 d-flex flex-column">
+                    <img class="card-img-top" style="height: 200px; object-fit: cover;" src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?q=80&w=1125&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Computer">
+                    <div class="card-body text-center d-flex flex-column flex-grow-1">
+                        <h3 class="card-text">Courses Management</h3>
+                        <p>Register and manage courses of your institution.</p>
+                        <a href="./courses.html" class="btn btn-primary">Access</a>
+                    </div>
+                </div>
+            </section>
+            <section class="col-md-6 col-lg-3">
+                <div class="card h-100 d-flex flex-column">
+                    <img class="card-img-top" style="height: 200px; object-fit: cover;" src="https://images.unsplash.com/photo-1511629091441-ee46146481b6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Professor in front of board teaching physics">
+                    <div class="card-body text-center d-flex flex-column flex-grow-1">
+                        <h3 class="card-text">Subjects Management</h3>
+                        <p>Register and manage subjects of your institution.</p>
+                        <a href="./subjects.html" class="btn btn-primary">Access</a>
+                    </div>
+                </div>
+            </section>
+            <section class="col-md-6 col-lg-3">
+                <div class="card h-100 d-flex flex-column">
+                    <img class="card-img-top" style="height: 200px; object-fit: cover;" src="https://images.unsplash.com/photo-1517817748493-49ec54a32465?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Man regitering in notebook">
+                    <div class="card-body text-center d-flex flex-column flex-grow-1">
+                        <h3 class="card-text">Relations Management</h3>
+                        <p>Register and manage all relations of your institution.</p>
+                        <a href="./student-course-subject.html" class="mt-auto btn btn-primary">Access</a>
+                    </div>
+                </div>
+            </section>
+        </nav>
+    </header>
+    <main>
+        <section class="bg-light py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h2>School System Management</h2>
+                        <p class="lead">Offer all tools to manage an school with agility</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-star text-warning me-2"></i>Intuitive and easy to use</li>
+                            <li class="mb-2"><i class="fas fa-star text-warning me-2"></i>Complete reports</li>
+                            <li class="mb-2"><i class="fas fa-star text-warning me-2"></i>Secure access with multiple profiles</li>
+                        </ul>
+                        <button id="more-info" class="btn btn-primary mt-3" type="button">More info</button>
+                    </div>
+                    <div class="col-lg-6">
+                        <img class="img-fluid roudend shadow" src="https://plus.unsplash.com/premium_photo-1661506766784-c99954e6592f?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-dark text-white py-4">
+        <section class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Olszewski Systems</h3>
+                    <p>The most complete Educational system in the market</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Fast links</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="./login.html" class="text-white">Login</a></li>
+                        <li><a href="./students.html" class="text-white">Students</a></li>
+                        <li><a href="./courses.html" class="text-white">Courses</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2">contato@gmail.com</i></li>
+                        <li><i class="fas fa-phone me-2">(67) 99875-6512</i></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </footer>
 </body>
 </html>
