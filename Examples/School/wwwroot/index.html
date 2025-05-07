@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/global.css">
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./styles/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>API - School</title>
@@ -21,24 +21,49 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </nav>
-            <nav class="collapse navbar-collapse" id="navbarNav">
+            <nav class="collapse navbar-collapse flex justify-between" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            <div class="fas fa-home me-1 p-1 mx-1">
-                                <i>Home</i>
-                            </div>
+                        <a class="nav-link active" href="./students.html">
+                            <i class="fas fa-person me-1 p-1">
+                            </i>
+                            Students
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./courses.html">
+                            <i class="fas fa-book me-1 p-1">
+                            </i>
+                            Courses
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./subjects.html">
+                            <i class="fas fa-pencil me-1 p-1">
+                            </i>
+                            Subjects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./register.html">
+                            <i class="fas fa-code me-1 p-1">
+                            </i>
+                            Register
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./index.html">
+                            <i class="fas fa-home me-1 p-1 mx-1">
+                            </i>
+                            Home
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="./login.html">
-                            <div class="fas fa-sign-in-alt me-1 p-1 mx-2">
-                                <i>Login</i>
-                            </div>
+                            <i class="fas fa-sign-in-alt me-1 p-1 mx-2">
+                            </i>
+                            Login
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active"></a>
                     </li>
                 </ul>
             </nav>
@@ -138,5 +163,24 @@
             </div>
         </section>
     </footer>
+
+    <script src="./scripts/modal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const modal = new CustomModal();
+        console.log(modal)
+        document.getElementById('more-info').addEventListener('click', () => {
+            modal.show('About School System', `
+                <p>School System</p>
+                <p><strong>Top Resources:</strong></p>
+                <ul>
+                    <li>Management of all students with easy and intuitive system;</li>
+                    <li>Complete reports for the manager;</li>
+                    <li>Multi profiles access;</li>
+                    <li>Responsive interface</li>
+                </ul>
+            `);
+        });
+    </script>
 </body>
 </html>
