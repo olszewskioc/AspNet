@@ -32,6 +32,7 @@ class CustomModal {
                 if(button.handler) button.handler();
                 if(button.close !== false) this.hide(); 
             });
+            footer.appendChild(buttonElement);
         })
 
         this.modal.classList.add('active');
