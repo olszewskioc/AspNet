@@ -1,6 +1,6 @@
 #hero-section {
     background-image: url('https://images.unsplash.com/photo-1508830524289-0adcbe822b40?q=80&w=1125&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D    ');
-    background-size: fill;
+    background-size: cover;
     background-position: center;
     padding: 3rem;
     margin-bottom: 2rem;
