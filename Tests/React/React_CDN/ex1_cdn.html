@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 1React CDN</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+            color: #fff;
+        }
+        hr {
+            width: 100%;
+            margin: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #2b2b2b;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .tarefa {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #af1f14;
+        }
+        .concluida {
+            text-decoration: line-through;
+            color: rgb(11, 202, 113);
+        }
+        #contador-valor {
+            color: #ddd;
+            text-align: center;
+            text-decoration: dotted;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+    </div>
+
+    <script type="text/babel">
+        const { useState } = React;
+        
+        function Hello ({ nome }) {
+            return <div>
+                <h1>Ola, {nome}!</h1>
+                </div>;
+        }
+
+        function Counter () {
+            const [count, setCount] = useState(0);
+            console.log(count)
+            return (
+                <div id="contador-container">
+                    <h2>Contador</h2>
+                    <p id="contador-valor">{count}</p>
+                    <button onClick={() => setCount(count + 1)}>
+                    +1
+                    </button>
+                    <button onClick={() => setCount(count - 1)}>
+                    -1
+                    </button>
+                </div>
+            )
+        }
+
+        function Todo () {
+            const [tarefas, setTarefas] = useState([]);
+            const addTarefa = () => {
+            const tarefaInput = document.getElementById('tarefa').value.trim();
+            if (tarefaInput) {
+                setTarefas([...tarefas, { texto: tarefaInput, concluida: false }]);
+                document.getElementById('tarefa').value = '';
+            }
+        };
+
+        const marcarTarefa = (index) => {
+            setTarefas(tarefas.map((tarefa, i) => i === index ? { ...tarefa, concluida: !tarefa.concluida } : tarefa));
+        };
+
+        const removerTarefa = (index) => {
+            setTarefas(tarefas.filter((_, i) => i !== index));
+        };
+
+        return (
+            <div id="todo-container">
+                <h2>Lista de Tarefas</h2>
+                <input type="text" id="tarefa" placeholder="Digite uma tarefa" />
+                <button onClick={addTarefa}>Adicionar tarefa</button>
+                <div id="lista-tarefas">
+                    {tarefas.map((tarefa, index) => (
+                        <div key={index} className={`tarefa ${tarefa.concluida ? 'concluida' : ''}`}>
+                            <span>{tarefa.texto}</span>
+                            <button onClick={() => marcarTarefa(index)}>{tarefa.concluida ? 'Desmarcar' : 'Concluir'}</button>
+                            <button onClick={() => removerTarefa(index)}>🗑️</button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+        
+        }
+
+        function App() {
+            return (
+                <div className="container">
+                    <Hello nome="Thiago"/>
+                    <hr/>
+                    <Counter />
+                    <hr/>
+                    <Todo />
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App/>, document.getElementById('root'));
+    </script>
+</body>
+</html>

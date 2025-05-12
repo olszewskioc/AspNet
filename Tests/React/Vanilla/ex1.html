@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo 1</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+            color: #fff;
+        }
+        hr {
+            width: 100%;
+            margin: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #2b2b2b;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .tarefa {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #af1f14;
+        }
+        .concluida {
+            text-decoration: line-through;
+            color: rgb(11, 202, 113);
+        }
+        #contador-valor {
+            color: #ddd;
+            text-align: center;
+            text-decoration: dotted;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="saudacao-container"></div>
+        <button onclick="render_hello('Thiago', 'saudacao-container')">
+            Clique aqui
+        </button>
+        
+        <hr>
+        
+        <div id="contador-container">
+            <h2>Contador</h2>
+            <p id="contador-valor">0</p>
+            <button id="contador-incrementar">
+               +1
+            </button>
+            <button id="contador-decrementar">
+               -1
+            </button>
+        </div>
+
+        <hr>
+
+        <div id="todo-container">
+            <h2>Lista de Tarefas</h2>
+            <input type="text" id="tarefa" placeholder="Digite uma tarefa">
+            <button id="add">Adicionar tarefa</button>
+            <div id="lista-tarefas">
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        function render_hello(nome, contatinerId) {
+            const container = document.getElementById(contatinerId);
+            container.innerHTML = `
+                <h1>Olá ${nome}!</h1>
+            `
+        }
+
+        let contador = 0;
+        const contadorValor = document.getElementById('contador-valor');
+        const atualizarValor = () => contadorValor.textContent = contador;
+        document.getElementById('contador-incrementar').addEventListener('click', () => {
+            contador++;
+            atualizarValor();
+        })
+        document.getElementById('contador-decrementar').addEventListener('click', () => {
+            contador--;
+            atualizarValor();
+        })
+
+        let tarefas = [];
+        const listaTarefas = document.getElementById('lista-tarefas');
+        
+        const addTarefa = () => {
+            const tarefaInput = document.getElementById('tarefa').value;
+            const text = tarefaInput.trim()
+            if (text) {
+                const tarefa = {
+                    texto: text,
+                    concluida: false
+                }
+                tarefas.push(tarefa);
+
+                document.getElementById('tarefa').value = '';
+                render_tarefas();
+            }
+        }
+        document.getElementById('add').addEventListener('click', addTarefa);
+        function render_tarefas() {
+            console.log(tarefas)
+            listaTarefas.innerHTML = tarefas.map((tarefa, index) => 
+                `
+                    <div class="tarefa ${tarefa.concluida ? 'concluida' : ''}">
+                        <span> ${tarefa.texto} </span>
+                        <button onclick="marcarTarefa(${index})">${tarefa.concluida ? 'Desmarcar' : 'Concluir'}</button>
+                        <button onclick="removerTarefa(${index})">🗑️</button>
+                    </div>
+                `
+            ).join('')
+        }
+
+        window.marcarTarefa = (index) => {
+            tarefas[index].concluida = !tarefas[index].concluida
+            render_tarefas()
+        }
+        window.removerTarefa = (index) => {
+            tarefas = tarefas.filter((_, i) => i !== index)
+            render_tarefas()
+        }
+
+    </script>
+</body>
+</html>
