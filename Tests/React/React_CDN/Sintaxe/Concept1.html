@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const root = document.getElementById('root');
+        const {useEffect, useState} = React;
+
+        function Header({logoUrl, title}) {
+            return (
+                <header>
+                    <section>
+                        <img src={logoUrl} alt="Logo do site"/>
+                        <h1>{title}</h1>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>
+                                <a href="#">Item 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Item 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Item 3</a>
+                            </li>
+                        </ul>
+                    </section>
+                </header>
+            )
+        }
+
+        function App() {
+            return (
+                <Header logoUrl={"https://images.unsplash.com/photo-1746311585296-f91039c70a8f?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} title={"Sistema Olszewski"} />
+            )
+        }
+
+        ReactDOM.render(<App/>, root)
+    </script>
+</body>
+</html>

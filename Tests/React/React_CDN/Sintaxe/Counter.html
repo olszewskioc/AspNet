@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script
+            crossorigin
+            src="https://unpkg.com/react@18/umd/react.development.js"
+        ></script>
+        <script
+            crossorigin
+            src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+        ></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            const { useEffect, useState } = React;
+            const root = document.getElementById("root");
+
+            function Counter(props) {
+                const [count, setCount] = useState(0);
+
+                const handleIncrement = (add) => {
+                    setCount(add ? count + 1 : count - 1);
+                };
+
+                const reset = () => setCount(0);
+
+                return (
+                    <section style={{ ...props.theme }}>
+                        <h1>Sua contagem é: {count}</h1>
+                        <div style={{ ...props.buttonStyles }}>
+                            {props.buttons.map((label, index) => (
+                                <button
+                                    key={index}
+                                    type="button"
+                                    onClick={() =>
+                                        label === 'Reset' ? reset() : handleIncrement(label === '+1')
+                                    }
+                                    style={{ ...props.buttonTheme }}
+                                    onMouseEnter={(e) =>
+                                        Object.assign(e.target.style, props.buttonHoverTheme)
+                                    }
+                                    onMouseLeave={(e) =>
+                                        Object.assign(e.target.style, props.buttonTheme)
+                                    }
+                                >
+                                    {label}
+                                </button>
+                            ))}
+                        </div>
+                    </section>
+                );
+            }
+
+            function App() {
+                const theme = {
+                    backgroundColor: "lightblue",
+                    color: "black",
+                    fontSize: "20px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "2rem",
+                    padding: "2rem",
+                };
+
+                const buttonStyles = {
+                    display: "flex",
+                    gap: "10px",
+                    marginTop: "1rem",
+                };
+
+                const buttonTheme = {
+                    backgroundColor: "white",
+                    color: "black",
+                    padding: "10px 20px",
+                    border: "2px solid lightblue",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                    transition: "background-color 0.3s, color 0.3s, transform 0.2s",
+                };
+
+                const buttonHoverTheme = {
+                    backgroundColor: "lightgreen",
+                    color: "white",
+                    transform: "scale(1.05)",
+                };
+                return <Counter
+                            theme={theme}
+                            buttonStyles={buttonStyles}
+                            buttonTheme={buttonTheme}
+                            buttonHoverTheme={buttonHoverTheme}
+                            buttons={['+1', '-1', 'Reset']}
+                        />;
+            }
+
+            ReactDOM.render(<App />, root);
+        </script>
+    </body>
+</html>
