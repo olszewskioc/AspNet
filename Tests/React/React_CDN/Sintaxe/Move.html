@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script
+            crossorigin
+            src="https://unpkg.com/react@18/umd/react.development.js"
+        ></script>
+        <script
+            crossorigin
+            src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+        ></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            const { useEffect, useState } = React;
+            const root = document.getElementById("root");
+
+            function MovableDiv() {
+                const [position, setPosition] = useState({ x: 0, y: 0 });
+
+                useEffect(() => {
+                    const handleKeyDown = (event) => {
+                        console.log(event.key)
+                        switch (event.key) {
+                            case "w":
+                            case "ArrowUp":
+                                setPosition((prev) => ({
+                                    ...prev,
+                                    y: prev.y - 50,
+                                }));
+                                break;
+                            case "a":
+                            case "ArrowLeft":
+                                setPosition((prev) => ({
+                                    ...prev,
+                                    x: prev.x - 50,
+                                }));
+                                break;
+                            case "s":
+                            case "ArrowDown":
+                                setPosition((prev) => ({
+                                    ...prev,
+                                    y: prev.y + 50,
+                                }));
+                                break;
+                            case "d":
+                            case "ArrowRight":
+                                setPosition((prev) => ({
+                                    ...prev,
+                                    x: prev.x + 50,
+                                }));
+                                break;
+                            default:
+                                break;
+                        }
+                    };
+
+                    window.addEventListener("keydown", handleKeyDown);
+
+                    return () => {
+                        window.removeEventListener("keydown", handleKeyDown);
+                    };
+                }, []);
+
+                return (
+                    <div
+                        style={{
+                            position: "absolute",
+                            left: `${position.x}px`,
+                            top: `${position.y}px`,
+                            width: "100px",
+                            height: "100px",
+                            backgroundColor: "skyblue",
+                            transition: "0.1s",
+                        }}
+                    >
+                        Movable Div
+                    </div>
+                );
+            }
+
+            function App() {
+                return (
+                    <>
+                        <MovableDiv />
+                    </>
+                );
+            }
+
+            ReactDOM.render(<App />, root);
+        </script>
+    </body>
+</html>

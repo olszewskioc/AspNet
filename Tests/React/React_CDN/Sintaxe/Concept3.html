@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Condicional</title>
+        <script
+            crossorigin
+            src="https://unpkg.com/react@18/umd/react.development.js"
+        ></script>
+        <script
+            crossorigin
+            src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+        ></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                padding: 20px;
+            }
+
+            .component {
+                border: 2px solid #3494aa;
+                padding: 15px;
+                margin: 10px 0;
+                border-radius: 5px;
+            }
+
+            .props-box {
+                background-color: #cdcdcd;
+                padding: 10px;
+                margin: 10px;
+                border-left: 3px solid #3494aa;
+            }
+
+            .task {
+                text-align: center;
+                background-color: cadetblue;
+                padding: 10px;
+                border: 2px solid #ee0707;
+                border-radius: 2rem;
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            const { useEffect, useState } = React;
+            const root = document.getElementById("root");
+
+            function Card(props) {
+                const [mostrar, setMostrar] = useState(true);
+
+                return (
+                    <div className="task">
+                        <h2>Tarefa {props.num + 1}</h2>
+                        {mostrar && <p>{props.tarefa}</p>}
+                        <button onClick={() => setMostrar(!mostrar)}>
+                            {mostrar ? "Esconder" : "Mostrar"}
+                        </button>
+                    </div>
+                );
+            }
+
+            function ListarTarefas() {
+                const [tarefa] = useState([
+                    "Aprender React",
+                    "Aprender JavaScript",
+                    "Aprender HTML",
+                    "Aprender CSS",
+                ]);
+
+                tarefa.map((tarefa, index) => console.log(tarefa, index));
+
+                return (
+                    <div className="component">
+                        <h2>Tarefas condicionais</h2>
+                        <div className="props-box">
+                            {tarefa.map((tarefa, index) => (
+                                <Card tarefa={tarefa} num={index} />
+                            ))}
+                        </div>
+                    </div>
+                );
+            }
+
+            function App() {
+                return (
+                    <>
+                        <ListarTarefas />
+                    </>
+                );
+            }
+
+            ReactDOM.render(<App />, root);
+        </script>
+    </body>
+</html>
