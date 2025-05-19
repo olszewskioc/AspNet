@@ -1,0 +1,14 @@
+#display {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 1rem;
+    background-color: #0e0a22;
+    border-radius: 8px 8px 0 0;
+}
+
+.number,
+.operation {
+    font-size: large;
+    font-weight: bold;
+}

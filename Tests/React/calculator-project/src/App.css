@@ -1,0 +1,20 @@
+#App {
+  border: 2px solid #646cff;
+  border-radius: 8px;
+}
+
+.grid {
+  /* creating an grid 4x4 */
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  padding: 20px;
+  background-color: #575555;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 0.5rem;
+}
