@@ -1,8 +1,8 @@
 import './Button.css'
 
-const Button = ({ value, handleClick }) => {
+const Button = ({ value, handleClick, bgColor = "#1a1a1a" }) => {
     return (
-        <button onClick={handleClick}>{value}</button>
+        <button onClick={() => handleClick(value)} style={{ backgroundColor: bgColor }}>{value}</button>
     );
 }
 
