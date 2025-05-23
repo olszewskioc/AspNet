@@ -25,9 +25,9 @@ function App() {
             <FotoUsuario url={'https://i.imgur.com/1bX5QH6.jpg'} />
           </CardUsuario>
         </Painel> */}
-        {produtos.map((produto) => {
+        {produtos.map((produto, index) => {
           return (
-            <CardProduto key={produto.id} produto={produto} >
+            <CardProduto key={index} produto={produto} >
               <FotoProduto url={produto.imagem} alt={'Foto Produto'} />
             </CardProduto>
           )
