@@ -1,0 +1,15 @@
+.titulo-nome {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000;
+    text-decoration: underline;
+}
+
+.bio {
+    font-size: 1rem;
+    color: #524f4f;
+    margin-bottom: 4rem;
+    max-width: 20vw;
+    text-align: start;
+    padding: 1rem;
+}

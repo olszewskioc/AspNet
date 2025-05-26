@@ -1,0 +1,9 @@
+#App {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem linha */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  gap: 4rem; /* Espaço entre os cards */
+  max-width: 80vw; /* Limita o container a 80% da largura da tela */
+  margin: 40px auto; /* Centraliza o App na tela */
+  padding: 16px;
+}
